@@ -1,18 +1,17 @@
 package db
 
 import (
-	"log"
-
+	"github.com/sirupsen/logrus"
 	"github.com/uptrace/bun"
 )
 
 type Instance struct {
 	db     *bun.DB
-	logger *log.Logger
+	logger *logrus.Logger
 }
 
 // NewInstance - constructor for an Instance.
-func NewInstance(db *bun.DB, logger *log.Logger) *Instance {
+func NewInstance(db *bun.DB, logger *logrus.Logger) *Instance {
 	return &Instance{
 		db:     db,
 		logger: logger,

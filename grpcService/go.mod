@@ -3,6 +3,8 @@ module awesomeProject1
 go 1.18
 
 require (
+	github.com/google/uuid v1.3.0
+	github.com/sirupsen/logrus v1.9.0
 	github.com/uptrace/bun v1.1.7
 	github.com/uptrace/bun/dialect/pgdialect v1.1.7
 	github.com/uptrace/bun/driver/pgdriver v1.1.7
