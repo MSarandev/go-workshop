@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: postgres:14.1
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c max_connections=200
+    restart: always
+    volumes:
+      - ./docker/db/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./docker/db/store:/var/lib/postgresql/data
+    ports:
+      - 5532:5432
+    networks:
+      - go_internal_network
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+
+  redis:
+    image: redis:5.0.9-alpine
+    volumes:
+      - ./docker/redis/store:/data
+    ports:
+      - 6479:6379
+    networks:
+      - go_internal_network
+
+networks:
+  go_internal_network:
+    external: true
