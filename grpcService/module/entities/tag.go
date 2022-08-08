@@ -7,18 +7,18 @@ import (
 	"github.com/uptrace/bun"
 )
 
-// User a db object.
-type User struct {
-	bun.BaseModel `bun:"table:users,alias:u"`
+// Tag a tag db model.
+type Tag struct {
+	bun.BaseModel `bun:"table:tags,alias:t"`
 
 	ID   uuid.UUID `bun:"id,pk,notnull" json:"id" yaml:"id"`
-	Name string    `bun:"name,nullzero" json:"name" yaml:"name"`
+	Name string    `bun:"name,notnull" json:"name" yaml:"name"`
 
 	CreatedAt time.Time `bun:",nullzero,notnull,default:current_timestamp"`
 	UpdatedAt time.Time `bun:",nullzero,notnull,default:current_timestamp"`
 }
 
 // Identity returns the identifier.
-func (u *User) Identity() *uuid.UUID {
-	return &u.ID
+func (t *Tag) Identity() *uuid.UUID {
+	return &t.ID
 }

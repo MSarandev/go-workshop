@@ -1,4 +1,4 @@
-module awesomeProject1
+module grpcService
 
 go 1.18
 
